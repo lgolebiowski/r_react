@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import './Order.css';
+import axios from 'axios';
 import OrderItem from './OrderItem';
 
 class Order extends Component {
   
   state = {
+      orders: [],
       agency: {
         name: 'XYZ',
         address: '7/5 Waine St',
@@ -18,6 +20,19 @@ class Order extends Component {
       status: false
     }
 
+// I had problems with fetching the JSON file from your API to Rails (which insn't configured yet), 
+// but here is the way, how I would get them here and place to the state (that's why in the costructor method you see empty array of 'orders')    
+
+  // componentDidMount () {
+
+  //   axios 
+  //     .get("https://jsonplaceholder.typicode.com/posts")
+  //     .then(response => {
+  //       this.setState({orders: response.data});
+  //         console.log(response)
+  //     });
+  // }
+
     toggleHandler = (event) => {
       const label = this.state.status;
       this.setState({
@@ -26,6 +41,15 @@ class Order extends Component {
     }
 
   render() {
+
+    // Here I map through the JSON file to get particular data to render (ie. title and body from another JSON example)
+    // Then I can return {orders} in the render's return method (haven't placed it there because doesn't want to be commented out) 
+
+    // const orders = this.state.orders.map(order => {
+    // return (
+    // order.title,
+    // order.body
+    // )});
 
     return (
       <div className="Order">
